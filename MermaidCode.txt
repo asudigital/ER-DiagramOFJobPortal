@@ -1,0 +1,49 @@
+erDiagram
+    USER {
+        int user_id
+        string full_name
+        string email
+        string phone
+        string user_type
+    }
+    JOB_POST {
+        int job_id
+        int recruiter_id
+        string company
+        string industry
+        string job_role
+        string job_description
+        date available_from
+        int salary_min
+        int salary_max
+        string country
+        string city
+        string work_mode
+        string role_type
+        string employment_type
+        int contract_duration
+        boolean is_filled
+    }
+    JOB_SEEKER {
+        int user_id
+    }
+    APPLICATION {
+        int application_id
+        int job_id
+        int job_seeker_id
+        string resume_file_path
+        date applied_on
+    }
+    FAVORITE_JOB {
+        int favorite_id
+        int job_seeker_id
+        int job_id
+        date added_on
+    }
+
+    USER ||--o{ JOB_POST : "creates"
+    USER ||--|| JOB_SEEKER : "is"
+    JOB_POST ||--o{ APPLICATION : "has"
+    JOB_POST ||--o{ FAVORITE_JOB : "is favorited by"
+    JOB_SEEKER ||--o{ APPLICATION : "applies to"
+    JOB_SEEKER ||--o{ FAVORITE_JOB : "marks as favorite"
